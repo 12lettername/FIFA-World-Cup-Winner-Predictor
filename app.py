@@ -71,16 +71,61 @@ def load_data():
     return df
 
 @st.cache_data
-def compute_elo(_df, k=32, base=1500):
+def compute_elo(_df, base=1500):
+
+    def get_k(tournament):
+        t = tournament.lower()
+
+        # World Cup
+        if t == "fifa world cup":
+            return 60
+
+        # Major continental tournaments
+        if t in [
+            "uefa euro",
+            "copa américa",
+            "african cup of nations",
+            "afc asian cup",
+            "uefa nations league",
+            "concacaf nations league",
+            "confederations cup",
+            "oceania nations cup",
+        ]:
+            return 50
+        if t == "gold cup":
+            return 35
+        # Secondary tournaments
+        if t in [
+            "aff championship",
+            "gulf cup",
+            "saff cup",
+            "waff championship",
+            "cosafa cup",
+            "cecafa cup",
+            "eaff championship",
+            "cafa nations cup",
+            "nordic championship",
+        ]:
+            return 20
+
+        return None  
+
     elo = {}
     for _, row in _df.sort_values("date").iterrows():
+        k = get_k(row["tournament"])
+        if k is None:
+            continue     # ← just skip this match entirely
+
         home, away = row["home_team"], row["away_team"]
         h_elo = elo.get(home, base)
         a_elo = elo.get(away, base)
+
         expected = 1 / (1 + 10 ** ((a_elo - h_elo) / 400))
-        actual = {"win": 1, "draw": 0.5, "loss": 0}[row["result"]]
+        actual   = {"win": 1, "draw": 0.5, "loss": 0}[row["result"]]
+
         elo[home] = h_elo + k * (actual - expected)
         elo[away] = a_elo + k * ((1 - actual) - (1 - expected))
+
     return elo
 
 @st.cache_data
