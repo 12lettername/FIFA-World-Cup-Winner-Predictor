@@ -425,9 +425,9 @@ with st.spinner("Loading data and training model... (first run ~2 mins)"):
 
 #  UI
 
-st.title("⚽ 2026 World Cup Predictor")
+st.title("🏆 2026 World Cup Predictor")
 
-tab1, tab2, tab3 = st.tabs(["🔮 Custom Prediction", "📅 Group Stage Schedule", "🏆 Tournament Simulator"])
+tab1, tab2, tab3 = st.tabs(["Custom Prediction", "Group Stage Schedule", "Tournament Simulator"])
 
 
 # Tab 1: Custom Prediction
