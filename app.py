@@ -520,11 +520,11 @@ with tab3:
                 f"🏆 **{r['winner']}** *(model confidence: {r['prob']}%)*"
             )
 
-    show_round("⚔️ Round of 32",    list(range(73, 89)))
-    show_round("🔟 Round of 16",    list(range(89, 97)))
-    show_round("🏅 Quarter-Finals", list(range(97, 101)))
-    show_round("🔥 Semi-Finals",    [101, 102])
-    show_round("🥉 Third Place",    [103])
+    show_round("Round of 32",    list(range(73, 89)))
+    show_round("Round of 16",    list(range(89, 97)))
+    show_round("Quarter-Finals", list(range(97, 101)))
+    show_round("Semi-Finals",    [101, 102])
+    show_round("Third Place",    [103])
 
     # ── Final ────────────────────────────────
     final = knockout_results[104]
