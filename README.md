@@ -6,7 +6,7 @@ Built from scratch as a learning project — every function was written and unde
 
 ## Live Demo
 
-https://fifa-world-cup-winner-predictor.streamlit.app/
+[https://fifa-world-cup-winner-predictor.streamlit.app/](https://fifa-world-cup-2026-winner-predictor.streamlit.app/)
 
 ## How It Works
 
